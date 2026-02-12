@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ATHENA STUDIO Company Profile (Frontend)
 
-## Getting Started
+Website company profile berbasis **Next.js (App Router)** dengan fokus pada UI landing page, komponen modular, dan dukungan bahasa **English / Indonesia**.
 
-First, run the development server:
+## Ringkasan Fitur
+- Landing page multi-section:
+  - Hero slider
+  - About Us
+  - Services
+  - How We Work
+  - Why ATHENA
+  - CTA section
+- **I18n sederhana** tanpa library eksternal (EN/ID) via context.
+- Pilihan bahasa di navbar (dropdown/modal style) dan tersimpan di `localStorage`.
+- Navigasi menu navbar/footer menggunakan **anchor smooth scroll** (bukan pindah page).
+- Halaman legal:
+  - `Privacy Policy` (`/privacy-policy`)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Tech Stack
+- Next.js 15+ (App Router)
+- React + TypeScript
+- Tailwind CSS
+- Lucide React (icons)
+
+## Struktur Utama
+```txt
+src/
+  app/
+    layout.tsx
+    page.tsx
+    home.tsx
+    privacy-policy/page.tsx
+    globals.css
+  components/
+    language-provider.tsx
+    navbar/index.tsx
+    footer/index.tsx
+    home/
+      content.ts
+      types.ts
+      hero-section.tsx
+      about-section.tsx
+      services-section.tsx
+      how-we-work-section.tsx
+      why-athena-section.tsx
+      cta-section.tsx
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Arsitektur Home
+- `src/app/home.tsx` berperan sebagai **pondasi/orchestrator**:
+  - ambil `language` dari `LanguageProvider`
+  - pilih dictionary dari `home/content.ts`
+  - kelola state slider hero
+  - mapping data + icon ke komponen section
+- UI tiap section dipisah ke komponen di `src/components/home/*` agar maintainable.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Sistem Bahasa (EN/ID)
+- Provider: `src/components/language-provider.tsx`
+- Hook: `useLanguage()`
+- Nilai bahasa:
+  - `"en"`
+  - `"id"`
+- Persistensi:
+  - key `localStorage`: `athena-language`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Navigasi Anchor
+Menu navbar/footer diarahkan ke section id di home:
+- `#home`
+- `#about-us`
+- `#services`
+- `#approach`
+- `#why-us`
+- `#contact`
 
-## Learn More
+Global smooth scroll di `src/app/globals.css`:
+- `scroll-behavior: smooth`
+- `scroll-padding-top: 96px` (agar tidak ketutup navbar sticky)
 
-To learn more about Next.js, take a look at the following resources:
+## Halaman Privacy Policy
+- Route: `/privacy-policy`
+- File: `src/app/privacy-policy/page.tsx`
+- Link dari footer `Privacy & Policy` sudah diarahkan ke route ini.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Menjalankan Project
+```bash
+npm install
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open `http://localhost:3000`.
 
-## Deploy on Vercel
+## Script
+```bash
+npm run dev
+npm run build
+npm run start
+npm run lint
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Catatan Pengembangan
+- Untuk menambah/ubah konten bilingual home, edit:
+  - `src/components/home/content.ts`
+- Untuk ubah gaya section, edit komponen section terkait di:
+  - `src/components/home/*.tsx`
+- Jika butuh menambah bahasa baru, extend:
+  - type `Language` di `language-provider.tsx`
+  - dictionary di `home/content.ts`, `navbar`, dan `footer`.

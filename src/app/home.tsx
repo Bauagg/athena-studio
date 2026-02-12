@@ -1,43 +1,82 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import {
+  Handshake,
+  BriefcaseBusiness,
+  Zap,
+  MessageSquare,
+  ShieldCheck,
+  Wifi,
+  Search,
+  Map,
+  PenTool,
+  Code2,
+  Rocket,
+  Code,
+  TrendingUp,
+  BarChart3,
+  Brain,
+  Crosshair,
+  CircleCheck,
+  Lightbulb,
+} from "lucide-react";
+import { useLanguage } from "@/components/language-provider";
+import { homeContentByLanguage } from "@/components/home/content";
+import type { HeroSlide, IconTextItem } from "@/components/home/types";
+import HeroSection from "@/components/home/hero-section";
+import AboutSection from "@/components/home/about-section";
+import ServicesSection from "@/components/home/services-section";
+import HowWeWorkSection from "@/components/home/how-we-work-section";
+import WhyAthenaSection from "@/components/home/why-athena-section";
+import CtaSection from "@/components/home/cta-section";
 
 import Banner1 from "@/assets/images/banner1.png";
 import Banner2 from "@/assets/images/banner2.png";
 import Banner3 from "@/assets/images/banner3.png";
+import aboutUsImage from "@/assets/images/image.png";
 
 export default function HomePage() {
-  const slides = [
-    {
-      image: Banner1,
-      title: "Building Strong Digital Foundations for Growing Businesses",
-      desc: "ATHENA STUDIO partners with UMKM to build clear, efficient digital systems helping businesses grow sustainably with the right strategy and technology.",
-    },
-    {
-      image: Banner2,
-      title: "Building Scalable Digital Products for Growing Startups",
-      desc: "ATHENA STUDIO works with startups to shape clear product strategies, build reliable systems, and prepare technology that grows alongside your business.",
-    },
-    {
-      image: Banner3,
-      title:
-        "Driving Sustainable Business Performance Through Strategic Technology",
-      desc: "ATHENA STUDIO partners with established organizations to align technology, processes, and long-term strategy for measurable and sustainable outcomes.",
-    },
-  ];
-
+  const { language } = useLanguage();
+  const content = homeContentByLanguage[language];
   const [current, setCurrent] = useState(0);
 
-  // AUTO SLIDE
+  const slides: HeroSlide[] = useMemo(
+    () => [
+      { image: Banner1, ...content.slides[0] },
+      { image: Banner2, ...content.slides[1] },
+      { image: Banner3, ...content.slides[2] },
+    ],
+    [content.slides],
+  );
+
+  const whyItems: IconTextItem[] = useMemo(() => {
+    const icons = [Handshake, BriefcaseBusiness, Zap, MessageSquare, ShieldCheck, Wifi];
+    return content.whyItems.map((item, index) => ({ ...item, Icon: icons[index] }));
+  }, [content.whyItems]);
+
+  const howWeWorkSteps: IconTextItem[] = useMemo(() => {
+    const icons = [Search, Map, PenTool, Code2, Rocket];
+    return content.howWeWork.map((item, index) => ({ ...item, Icon: icons[index] }));
+  }, [content.howWeWork]);
+
+  const aboutValues: IconTextItem[] = useMemo(() => {
+    const icons = [Brain, Crosshair, CircleCheck, Lightbulb];
+    return content.aboutValues.map((item, index) => ({ ...item, Icon: icons[index] }));
+  }, [content.aboutValues]);
+
+  const services: IconTextItem[] = useMemo(() => {
+    const icons = [Code, TrendingUp, BarChart3];
+    return content.services.map((item, index) => ({ ...item, Icon: icons[index] }));
+  }, [content.services]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [slides.length]);
 
   const nextSlide = () => {
     setCurrent((prev) => (prev + 1) % slides.length);
@@ -49,185 +88,51 @@ export default function HomePage() {
 
   return (
     <div className="w-full">
-      {/* ================= HERO SLIDER ================= */}
-      <section className="relative h-[85vh] flex items-center overflow-hidden">
-        {/* Background */}
-        {slides.map((slide, index) => (
-          <Image
-            key={index}
-            src={slide.image}
-            alt="Hero Banner"
-            fill
-            priority={index === 0}
-            className={`object-cover absolute inset-0 transition-opacity duration-1000 ${
-              index === current ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
+      <HeroSection
+        slides={slides}
+        current={current}
+        ctaLabel={content.heroCta}
+        onPrev={prevSlide}
+        onNext={nextSlide}
+        onSelect={setCurrent}
+      />
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/60 z-10" />
+      <AboutSection
+        title={content.aboutTitle}
+        subtitle={content.aboutSubtitle}
+        intro={content.aboutIntro}
+        missionTitle={content.missionTitle}
+        missionText={content.missionText}
+        approachTitle={content.approachTitle}
+        approachText={content.approachText}
+        values={aboutValues}
+        image={aboutUsImage}
+      />
 
-        {/* Content */}
-        <div className="relative z-20 max-w-6xl mx-auto px-6 text-white">
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight max-w-2xl">
-            {slides[current].title}
-          </h1>
+      <ServicesSection
+        title={content.servicesTitle}
+        subtitle={content.servicesSubtitle}
+        services={services}
+      />
 
-          <p className="mt-4 text-gray-200 max-w-xl">{slides[current].desc}</p>
+      <HowWeWorkSection
+        title={content.howWeWorkTitle}
+        subtitle={content.howWeWorkSubtitle}
+        steps={howWeWorkSteps}
+      />
 
-          <button className="mt-6 px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition">
-            Free Consultation
-          </button>
-        </div>
+      <WhyAthenaSection
+        title={content.whyTitle}
+        subtitle={content.whySubtitle}
+        items={whyItems}
+      />
 
-        {/* Arrow Left */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-6 z-30 text-white bg-white/20 hover:bg-white/40 backdrop-blur-md p-3 rounded-full transition"
-        >
-          <ChevronLeft size={24} />
-        </button>
-
-        {/* Arrow Right */}
-        <button
-          onClick={nextSlide}
-          className="absolute right-6 z-30 text-white bg-white/20 hover:bg-white/40 backdrop-blur-md p-3 rounded-full transition"
-        >
-          <ChevronRight size={24} />
-        </button>
-
-        {/* Dots */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrent(index)}
-              className={`w-3 h-3 rounded-full transition ${
-                current === index ? "bg-white" : "bg-white/40"
-              }`}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* ================= ABOUT US ================= */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-semibold text-center mb-12">About Us</h2>
-
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <Image
-              src={Banner1}
-              alt="About"
-              width={600}
-              height={400}
-              className="rounded-xl"
-            />
-
-            <div className="space-y-6">
-              <div className="p-6 bg-gray-100 rounded-lg">
-                <h3 className="font-semibold mb-2">Our Mission</h3>
-                <p className="text-sm text-gray-600">
-                  Delivering scalable, secure, and innovative digital solutions
-                  that empower businesses.
-                </p>
-              </div>
-
-              <div className="p-6 bg-gray-100 rounded-lg">
-                <h3 className="font-semibold mb-2">Our Approach</h3>
-                <p className="text-sm text-gray-600">
-                  Combining strategic thinking, agile development, and modern
-                  technologies to create impactful products.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= SERVICES ================= */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-semibold text-center mb-12">
-            Our Services
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              "Software House",
-              "Business Development",
-              "Digital Marketing",
-            ].map((service, index) => (
-              <div
-                key={index}
-                className="p-8 bg-white rounded-xl shadow hover:shadow-lg transition"
-              >
-                <h3 className="font-semibold text-lg mb-3">{service}</h3>
-                <p className="text-sm text-gray-600">
-                  High-quality solutions tailored to your business needs using
-                  modern technology.
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================= HOW WE WORK ================= */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-semibold mb-12">How We Work</h2>
-
-          <div className="grid md:grid-cols-5 gap-8">
-            {[
-              "Discovery",
-              "Strategy",
-              "Design",
-              "Development",
-              "Optimization",
-            ].map((step, index) => (
-              <div key={index}>
-                <div className="w-14 h-14 mx-auto mb-4 flex items-center justify-center bg-gray-100 rounded-full font-semibold">
-                  {index + 1}
-                </div>
-                <p className="font-medium">{step}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================= WHY ATHENA ================= */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-semibold text-center mb-12">
-            Why ATHENA STUDIO
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              "Collaborative Approach",
-              "Business & Technology Mindset",
-              "Custom Solutions",
-              "Clear Communication",
-              "Long-term Focus",
-              "Scalable Infrastructure",
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition"
-              >
-                <h3 className="font-semibold mb-2">{item}</h3>
-                <p className="text-sm text-gray-600">
-                  We prioritize quality, transparency, and long-term
-                  partnerships.
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CtaSection
+        titleA={content.ctaTitleA}
+        titleB={content.ctaTitleB}
+        description={content.ctaDesc}
+        buttonLabel={content.ctaButton}
+      />
     </div>
   );
 }

@@ -43,9 +43,14 @@ export default function HeroSection({
         <p className="mt-4 max-w-2xl text-lg text-slate-200">
           {slides[current].desc}
         </p>
-        <button className="mt-8 rounded-full border border-white/50 bg-white/20 px-7 py-3 text-xl font-medium text-white backdrop-blur-sm transition hover:bg-white/30">
+        <a
+          href="https://wa.me/6285730839962?text=Halo%20Athena%20Studio,%20saya%20tertarik%20untuk%20konsultasi%20mengenai%20layanan%20Anda."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-block rounded-full border border-white/50 bg-white/20 px-7 py-3 text-xl font-medium text-white backdrop-blur-sm transition hover:bg-white/30"
+        >
           {ctaLabel}
-        </button>
+        </a>
       </div>
 
       <button
@@ -66,9 +71,8 @@ export default function HeroSection({
           <button
             key={index}
             onClick={() => onSelect(index)}
-            className={`h-3 w-3 rounded-full transition ${
-              current === index ? "bg-white" : "bg-white/40"
-            }`}
+            className={`h-3 w-3 rounded-full transition ${current === index ? "bg-white" : "bg-white/40"
+              }`}
           />
         ))}
       </div>

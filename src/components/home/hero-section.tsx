@@ -37,17 +37,17 @@ export default function HeroSection({
       <div className="absolute inset-0 z-10 bg-slate-950/50" />
 
       <div className="relative z-20 mx-auto w-full max-w-[1240px] px-6 lg:px-8">
-        <h1 className="max-w-3xl text-4xl font-semibold leading-tight text-white md:text-6xl">
+        <h1 className="max-w-3xl text-3xl font-semibold leading-tight text-white md:text-6xl">
           {slides[current].title}
         </h1>
-        <p className="mt-4 max-w-2xl text-lg text-slate-200">
+        <p className="mt-3 max-w-2xl text-base text-slate-200 md:mt-4 md:text-lg">
           {slides[current].desc}
         </p>
         <a
           href="https://wa.me/6285730839962?text=Halo%20Athena%20Studio,%20saya%20tertarik%20untuk%20konsultasi%20mengenai%20layanan%20Anda."
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-8 inline-block rounded-full border border-white/50 bg-white/20 px-7 py-3 text-xl font-medium text-white backdrop-blur-sm transition hover:bg-white/30"
+          className="mt-6 inline-block rounded-full border border-white/50 bg-white/20 px-6 py-2.5 text-base font-medium text-white backdrop-blur-sm transition hover:bg-white/30 md:mt-8 md:px-7 md:py-3 md:text-xl"
         >
           {ctaLabel}
         </a>
@@ -55,13 +55,13 @@ export default function HeroSection({
 
       <button
         onClick={onPrev}
-        className="absolute left-4 z-30 p-2 text-white transition hover:opacity-80 md:left-6"
+        className="absolute left-6 z-30 hidden p-2 text-white transition hover:opacity-80 lg:block"
       >
         <ChevronLeft size={44} strokeWidth={1.5} />
       </button>
       <button
         onClick={onNext}
-        className="absolute right-4 z-30 p-2 text-white transition hover:opacity-80 md:right-6"
+        className="absolute right-6 z-30 hidden p-2 text-white transition hover:opacity-80 lg:block"
       >
         <ChevronRight size={44} strokeWidth={1.5} />
       </button>

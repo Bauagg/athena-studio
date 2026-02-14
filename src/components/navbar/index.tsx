@@ -69,18 +69,18 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-[1240px] items-center justify-between px-6 py-5 lg:px-8">
+      <div className="mx-auto flex max-w-[1240px] items-center justify-between px-4 py-3 lg:px-6 lg:py-5">
         <Link href="/" className="flex items-center">
           <Image
             src={Logo}
             alt="Athena Studio Logo"
             width={96}
             height={56}
-            className="h-auto w-[84px] md:w-[96px]"
+            className="h-auto w-[64px] lg:w-[96px]"
           />
         </Link>
 
-        <ul className="hidden items-center gap-8 text-base font-medium text-slate-700 md:flex">
+        <ul className="hidden items-center gap-8 text-base font-medium text-slate-700 lg:flex">
           {navItems.map((item) => (
             <li key={item.href}>
               <Link href={item.href} className="transition hover:text-slate-900">
@@ -90,7 +90,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setOpenLanguage((prev) => !prev)}
@@ -142,7 +142,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="text-slate-700 md:hidden"
+          className="text-slate-700 lg:hidden"
           aria-label="Toggle navigation menu"
           onClick={() => setOpenMobileMenu((prev) => !prev)}
         >
@@ -151,7 +151,7 @@ export default function Navbar() {
       </div>
 
       {openMobileMenu && (
-        <div className="border-t border-slate-200 bg-white px-6 py-4 md:hidden">
+        <div className="border-t border-slate-200 bg-white px-6 py-4 lg:hidden">
           <ul className="space-y-3">
             {navItems.map((item) => (
               <li key={item.href}>

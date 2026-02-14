@@ -11,41 +11,41 @@ export default function Footer() {
   const content =
     language === "id"
       ? {
-          description:
-            "IT Consultant & Software House yang berfokus pada solusi transformasi digital strategis.",
-          menuTitle: "Menu",
-          menuItems: [
-            { label: "Beranda", href: "/#home" },
-            { label: "Tentang Kami", href: "/#about-us" },
-            { label: "Layanan", href: "/#services" },
-            { label: "Pendekatan", href: "/#approach" },
-            { label: "Mengapa Kami", href: "/#why-us" },
-            { label: "Kontak", href: "/#contact" },
-          ],
-          infoTitle: "Informasi",
-          privacy: "Privasi & Kebijakan",
-          terms: "Syarat & Ketentuan",
-          contactTitle: "Hubungi Kami",
-          copyright: "© 2026 ATHENA STUDIO. Seluruh hak cipta dilindungi.",
-        }
+        description:
+          "IT Consultant & Software House yang berfokus pada solusi transformasi digital strategis.",
+        menuTitle: "Menu",
+        menuItems: [
+          { label: "Beranda", href: "/#home" },
+          { label: "Tentang Kami", href: "/#about-us" },
+          { label: "Layanan", href: "/#services" },
+          { label: "Pendekatan", href: "/#approach" },
+          { label: "Mengapa Kami", href: "/#why-us" },
+          { label: "Kontak", href: "/#contact" },
+        ],
+        infoTitle: "Informasi",
+        privacy: "Privasi & Kebijakan",
+        terms: "Syarat & Ketentuan",
+        contactTitle: "Hubungi Kami",
+        copyright: "© 2026 ATHENA STUDIO. Seluruh hak cipta dilindungi.",
+      }
       : {
-          description:
-            "IT Consultant & Software House focused on strategic digital transformation solutions.",
-          menuTitle: "Menu List",
-          menuItems: [
-            { label: "Home", href: "/#home" },
-            { label: "About Us", href: "/#about-us" },
-            { label: "Service", href: "/#services" },
-            { label: "Approach", href: "/#approach" },
-            { label: "Why Us", href: "/#why-us" },
-            { label: "Contact", href: "/#contact" },
-          ],
-          infoTitle: "Information",
-          privacy: "Privacy & Policy",
-          terms: "Term & Condition",
-          contactTitle: "Contact Us",
-          copyright: "© 2026 ATHENA STUDIO. All right reserved.",
-        };
+        description:
+          "IT Consultant & Software House focused on strategic digital transformation solutions.",
+        menuTitle: "Menu List",
+        menuItems: [
+          { label: "Home", href: "/#home" },
+          { label: "About Us", href: "/#about-us" },
+          { label: "Service", href: "/#services" },
+          { label: "Approach", href: "/#approach" },
+          { label: "Why Us", href: "/#why-us" },
+          { label: "Contact", href: "/#contact" },
+        ],
+        infoTitle: "Information",
+        privacy: "Privacy & Policy",
+        terms: "Term & Condition",
+        contactTitle: "Contact Us",
+        copyright: "© 2026 ATHENA STUDIO. All right reserved.",
+      };
 
   return (
     <footer className="bg-slate-100 text-slate-800">
@@ -108,7 +108,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={20} className="mt-1 shrink-0" />
-                +62 812-3456-7890
+                +62 857-3083-9962
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={20} className="mt-1 shrink-0" />
@@ -117,12 +117,22 @@ export default function Footer() {
             </ul>
 
             <div className="mt-6 flex gap-3">
-              <button className="rounded-lg bg-white p-2 text-slate-800 shadow-sm transition hover:bg-slate-50">
+              <a
+                href="https://www.linkedin.com/company/athena-studio-company/about/?viewAsMember=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg bg-white p-2 text-slate-800 shadow-sm transition hover:bg-slate-50 inline-flex"
+              >
                 <Linkedin size={20} />
-              </button>
-              <button className="rounded-lg bg-white p-2 text-slate-800 shadow-sm transition hover:bg-slate-50">
+              </a>
+              <a
+                href="https://www.instagram.com/athenaastudio.id/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg bg-white p-2 text-slate-800 shadow-sm transition hover:bg-slate-50 inline-flex"
+              >
                 <Instagram size={20} />
-              </button>
+              </a>
               <button className="rounded-lg bg-white p-2 text-slate-800 shadow-sm transition hover:bg-slate-50">
                 <Facebook size={20} />
               </button>

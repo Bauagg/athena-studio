@@ -116,11 +116,10 @@ export default function Navbar() {
                           setLanguage(option.value);
                           setOpenLanguage(false);
                         }}
-                        className={`flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left text-lg transition ${
-                          isActive
-                            ? "bg-slate-200 text-slate-900"
-                            : "text-slate-700 hover:bg-slate-100"
-                        }`}
+                        className={`flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left text-lg transition ${isActive
+                          ? "bg-slate-200 text-slate-900"
+                          : "text-slate-700 hover:bg-slate-100"
+                          }`}
                       >
                         <span>{option.flag}</span>
                         <span>{option.label}</span>
@@ -132,9 +131,14 @@ export default function Navbar() {
             )}
           </div>
 
-          <button className="rounded-full bg-slate-900 px-6 py-3 text-lg font-semibold text-white transition hover:bg-slate-800">
+          <a
+            href="https://wa.me/6285730839962?text=Halo%20Athena%20Studio,%20saya%20tertarik%20untuk%20konsultasi%20mengenai%20layanan%20Anda."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-slate-900 px-6 py-3 text-lg font-semibold text-white transition hover:bg-slate-800"
+          >
             {t.bookConsultation}
-          </button>
+          </a>
         </div>
 
         <button
@@ -161,9 +165,14 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <button className="mt-4 w-full rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white">
+          <a
+            href="https://wa.me/6285730839962?text=Halo%20Athena%20Studio,%20saya%20tertarik%20untuk%20konsultasi%20mengenai%20layanan%20Anda."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 block w-full rounded-full bg-slate-900 px-4 py-2 text-center text-sm font-medium text-white"
+          >
             {t.bookConsultation}
-          </button>
+          </a>
         </div>
       )}
     </nav>

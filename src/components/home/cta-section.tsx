@@ -24,9 +24,14 @@ export default function CtaSection({
           <span className="text-blue-300"> {titleB}</span>
         </h2>
         <p className="mx-auto mt-6 max-w-4xl text-xl text-slate-300">{description}</p>
-        <button className="mx-auto mt-10 inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-16 py-4 text-xl font-semibold text-white transition hover:bg-white/20">
+        <a
+          href="https://wa.me/6285730839962?text=Halo%20Athena%20Studio,%20saya%20tertarik%20untuk%20konsultasi%20mengenai%20layanan%20Anda."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mx-auto mt-10 inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-16 py-4 text-xl font-semibold text-white transition hover:bg-white/20"
+        >
           {buttonLabel} <ArrowUpRight size={20} />
-        </button>
+        </a>
       </div>
     </section>
   );

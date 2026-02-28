@@ -12,7 +12,7 @@ export default function ServicesSection({
   services,
 }: ServicesSectionProps) {
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="pb-20 bg-white">
       <div className="mx-auto max-w-360 px-6">
         <h2 className="text-center text-[24px] font-semibold text-slate-900 md:text-[32px] lg:text-[40px]">{title}</h2>
         <p className="mb-12 mt-3 text-center text-[16px] text-[#6D6F76] md:text-[18px]">{subtitle}</p>

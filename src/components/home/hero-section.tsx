@@ -40,11 +40,11 @@ export default function HeroSection({
   return (
     <section
       id="home"
-      className="relative flex items-center bg-white px-4 min-h-120 sm:h-[60vh] sm:min-h-0 md:px-6 lg:px-8"
+      className="relative flex items-center bg-white px-4 min-h-110 sm:h-[60vh] sm:min-h-0 md:px-6 lg:px-6 xl:px-8"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div className="absolute inset-0 px-4 md:px-6 lg:px-8">
+      <div className="absolute inset-0 px-4 md:px-6 lg:px-6 xl:px-8">
         <div className="relative h-full w-full overflow-hidden rounded-[20px]">
           <Image
             key={current}
@@ -77,6 +77,16 @@ export default function HeroSection({
             <path d="M8.22021 17.2357L17.1457 8.31028" stroke="#FDFEFF" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </a>
+
+        <div className="mt-6 flex gap-3 md:mt-8">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => onSelect(index)}
+              className={`h-3 w-3 rounded-full transition ${current === index ? "bg-white" : "bg-white/40"}`}
+            />
+          ))}
+        </div>
       </div>
 
       <button
@@ -91,17 +101,6 @@ export default function HeroSection({
       >
         <ChevronRight size={44} strokeWidth={1.5} />
       </button>
-
-      <div className="absolute bottom-8 left-0 z-30 flex w-full max-w-360 gap-3 px-12 lg:px-14">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => onSelect(index)}
-            className={`h-3 w-3 rounded-full transition ${current === index ? "bg-white" : "bg-white/40"
-              }`}
-          />
-        ))}
-      </div>
     </section>
   );
 }

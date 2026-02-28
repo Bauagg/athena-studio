@@ -49,9 +49,18 @@ const languageOptions: Array<{ value: Language; label: string; flag: string }> =
 export default function Navbar() {
   const [openLanguage, setOpenLanguage] = useState(false);
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { language, setLanguage } = useLanguage();
   const t = dictionary[language];
+
+  useEffect(() => {
+    function handleScroll() {
+      setScrolled(window.scrollY > 0);
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -68,7 +77,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur">
+    <nav className={`sticky top-0 z-50 w-full bg-white/95 backdrop-blur transition-all ${scrolled ? "border-b border-slate-200" : ""}`}>
       <div className="mx-auto flex max-w-360 items-center justify-between px-4 py-3 lg:px-6 lg:py-5">
         <Link href="/" className="flex items-center">
           <Image

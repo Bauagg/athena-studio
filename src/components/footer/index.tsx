@@ -54,7 +54,7 @@ export default function Footer() {
           {/* Logo & Description */}
           <div className="max-w-sm">
             <Image src={Logo} alt="Athena Logo" width={96} height={60} className="w-16 lg:w-24" />
-            <p className="mt-4 text-base leading-relaxed text-slate-700 md:text-lg lg:mt-5 lg:text-[28px]">
+            <p className="mt-4 text-[18px] leading-relaxed text-slate-700 lg:mt-5">
               {content.description}
             </p>
           </div>
@@ -62,10 +62,10 @@ export default function Footer() {
           {/* Menu & Info - 2 columns on mobile/tablet */}
           <div className="flex justify-between gap-8 lg:contents">
             <div className="flex-1 text-left">
-              <h4 className="mb-3 text-lg font-semibold text-slate-900 md:text-xl lg:mb-4 lg:text-2xl">
+              <h4 className="mb-3 text-[16px] font-semibold text-slate-900 lg:mb-4">
                 {content.menuTitle}
               </h4>
-              <ul className="space-y-2 text-base text-slate-800 md:text-lg lg:text-xl">
+              <ul className="space-y-2 text-[16px] text-slate-800">
                 {content.menuItems.map((item) => (
                   <li key={item.label}>
                     <Link href={item.href} className="transition hover:text-slate-950">
@@ -77,10 +77,10 @@ export default function Footer() {
             </div>
 
             <div className="flex-1 text-left">
-              <h4 className="mb-3 text-lg font-semibold text-slate-900 md:text-xl lg:mb-4 lg:text-2xl">
+              <h4 className="mb-3 text-[16px] font-semibold text-slate-900 lg:mb-4">
                 {content.infoTitle}
               </h4>
-              <ul className="space-y-2 text-base text-slate-800 md:text-lg lg:text-xl">
+              <ul className="space-y-2 text-[16px] text-slate-800">
                 <li>
                   <Link
                     href="/privacy-policy"
@@ -103,20 +103,20 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="mb-3 text-lg font-semibold text-slate-900 md:text-xl lg:mb-4 lg:text-2xl">
+            <h4 className="mb-3 text-[16px] font-semibold text-slate-900 lg:mb-4">
               {content.contactTitle}
             </h4>
-            <ul className="space-y-3 text-base text-slate-800 md:text-lg lg:space-y-4 lg:text-xl">
-              <li className="flex items-start gap-2 md:gap-3">
-                <Mail size={20} className="mt-0.5 shrink-0 md:mt-1" />
+            <ul className="space-y-3 text-[16px] text-slate-800">
+              <li className="flex items-start gap-2">
+                <Mail size={20} className="mt-0.5 shrink-0" />
                 athenaa.studioo@gmail.com
               </li>
-              <li className="flex items-start gap-2 md:gap-3">
-                <Phone size={20} className="mt-0.5 shrink-0 md:mt-1" />
+              <li className="flex items-start gap-2">
+                <Phone size={20} className="mt-0.5 shrink-0" />
                 +62 857-3083-9962
               </li>
-              <li className="flex items-start gap-2 md:gap-3">
-                <MapPin size={20} className="mt-0.5 shrink-0 md:mt-1" />
+              <li className="flex items-start gap-2">
+                <MapPin size={20} className="mt-0.5 shrink-0" />
                 Jakarta, Indonesia
               </li>
             </ul>
@@ -145,7 +145,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-slate-300 pt-6 text-center text-sm text-slate-700 md:text-base lg:mt-12 lg:pt-7 lg:text-lg">
+        <div className="mt-8 border-t border-slate-300 pt-6 text-center text-[16px] text-slate-700 lg:mt-12 lg:pt-7">
           {content.copyright}
         </div>
       </div>

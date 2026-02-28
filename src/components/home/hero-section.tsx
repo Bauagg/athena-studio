@@ -92,7 +92,7 @@ export default function HeroSection({
         <ChevronRight size={44} strokeWidth={1.5} />
       </button>
 
-      <div className="absolute bottom-8 left-1/2 z-30 flex -translate-x-1/2 gap-3">
+      <div className="absolute bottom-8 left-0 z-30 flex w-full max-w-360 gap-3 px-12 lg:px-14">
         {slides.map((_, index) => (
           <button
             key={index}

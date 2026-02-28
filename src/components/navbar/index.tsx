@@ -69,7 +69,7 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-[1240px] items-center justify-between px-4 py-3 lg:px-6 lg:py-5">
+      <div className="mx-auto flex max-w-360 items-center justify-between px-4 py-3 lg:px-6 lg:py-5">
         <Link href="/" className="flex items-center">
           <Image
             src={Logo}

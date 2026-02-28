@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { HeroSlide } from "@/components/home/types";
 
@@ -21,35 +22,60 @@ export default function HeroSection({
   onNext,
   onSelect,
 }: HeroSectionProps) {
+  const touchStartX = useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) onNext(); else onPrev();
+    }
+    touchStartX.current = null;
+  };
+
   return (
     <section
       id="home"
-      className="relative flex min-h-[540px] items-center overflow-hidden md:h-[76vh]"
+      className="relative flex items-center bg-white px-4 min-h-120 sm:h-[60vh] sm:min-h-0 md:px-6 lg:px-8"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
-      <Image
-        key={current}
-        src={slides[current].image}
-        alt={slides[current].title}
-        fill
-        priority
-        className="absolute inset-0 object-cover transition-all duration-700"
-      />
-      <div className="absolute inset-0 z-10 bg-slate-950/50" />
+      <div className="absolute inset-0 px-4 md:px-6 lg:px-8">
+        <div className="relative h-full w-full overflow-hidden rounded-[20px]">
+          <Image
+            key={current}
+            src={slides[current].image}
+            alt={slides[current].title}
+            fill
+            priority
+            className="object-cover transition-all duration-700"
+          />
+        </div>
+      </div>
 
-      <div className="relative z-20 mx-auto w-full max-w-[1240px] px-6 lg:px-8">
-        <h1 className="max-w-3xl text-3xl font-semibold leading-tight text-white md:text-6xl">
+      <div className="relative z-20 mx-auto w-full max-w-360 px-6 lg:px-8">
+        <h1 className="max-w-3xl text-2xl font-semibold leading-tight text-white md:text-[34px] lg:text-[44px]">
           {slides[current].title}
         </h1>
-        <p className="mt-3 max-w-2xl text-base text-slate-200 md:mt-4 md:text-lg">
+        <p className="mt-3 max-w-2xl text-[16px] text-slate-200 md:mt-4 md:text-[19px] lg:text-[22px]">
           {slides[current].desc}
         </p>
         <a
           href="https://wa.me/6285730839962?text=Halo%20Athena%20Studio,%20saya%20tertarik%20untuk%20konsultasi%20mengenai%20layanan%20Anda."
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-block rounded-full border border-white/50 bg-white/20 px-6 py-2.5 text-base font-medium text-white backdrop-blur-sm transition hover:bg-white/30 md:mt-8 md:px-7 md:py-3 md:text-xl"
+          className="mt-6 inline-flex items-center gap-2 rounded-full border border-white bg-white/20 px-6 py-2.5 text-[16px] font-medium text-white backdrop-blur-sm transition hover:bg-white/30 md:mt-8 md:border-white/50 md:px-7 md:py-3 md:text-[20px]"
         >
           {ctaLabel}
+
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.7974 8.21987L17.2356 8.21987L17.2356 14.6581" stroke="#FDFEFF" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M8.22021 17.2357L17.1457 8.31028" stroke="#FDFEFF" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </a>
       </div>
 
